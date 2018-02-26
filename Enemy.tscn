@@ -1,0 +1,105 @@
+[gd_scene load_steps=34 format=1]
+
+[ext_resource path="res://Enemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/mustache0_enemy/m0.png" type="Texture" id=2]
+[ext_resource path="res://assets/mustache0_enemy/m1.png" type="Texture" id=3]
+[ext_resource path="res://assets/mustache0_enemy/m2.png" type="Texture" id=4]
+[ext_resource path="res://assets/mustache0_enemy/m3.png" type="Texture" id=5]
+[ext_resource path="res://assets/mustache0_enemy/m4.png" type="Texture" id=6]
+[ext_resource path="res://assets/mustache4_enemy/mmmm0.png" type="Texture" id=7]
+[ext_resource path="res://assets/mustache4_enemy/mmmm1.png" type="Texture" id=8]
+[ext_resource path="res://assets/mustache4_enemy/mmmm2.png" type="Texture" id=9]
+[ext_resource path="res://assets/mustache4_enemy/mmmm3.png" type="Texture" id=10]
+[ext_resource path="res://assets/mustache4_enemy/mmmm4.png" type="Texture" id=11]
+[ext_resource path="res://assets/mustache4_enemy/mmmm5.png" type="Texture" id=12]
+[ext_resource path="res://assets/mustache3_enemy/mmm0.png" type="Texture" id=13]
+[ext_resource path="res://assets/mustache3_enemy/mmm1.png" type="Texture" id=14]
+[ext_resource path="res://assets/mustache3_enemy/mmm2.png" type="Texture" id=15]
+[ext_resource path="res://assets/mustache3_enemy/mmm3.png" type="Texture" id=16]
+[ext_resource path="res://assets/mustache3_enemy/mmm4.png" type="Texture" id=17]
+[ext_resource path="res://assets/mustache3_enemy/mmm5.png" type="Texture" id=18]
+[ext_resource path="res://assets/mustache1_enemy/sm0.png" type="Texture" id=19]
+[ext_resource path="res://assets/mustache1_enemy/sm1.png" type="Texture" id=20]
+[ext_resource path="res://assets/mustache1_enemy/sm2.png" type="Texture" id=21]
+[ext_resource path="res://assets/mustache1_enemy/sm3.png" type="Texture" id=22]
+[ext_resource path="res://assets/mustache1_enemy/sm4.png" type="Texture" id=23]
+[ext_resource path="res://assets/mustache2_enemy/mm0.png" type="Texture" id=24]
+[ext_resource path="res://assets/mustache2_enemy/mm1.png" type="Texture" id=25]
+[ext_resource path="res://assets/mustache2_enemy/mm2.png" type="Texture" id=26]
+[ext_resource path="res://assets/mustache2_enemy/mm3.png" type="Texture" id=27]
+[ext_resource path="res://assets/mustache2_enemy/mm4.png" type="Texture" id=28]
+[ext_resource path="res://assets/mustache2_enemy/mm5.png" type="Texture" id=29]
+[ext_resource path="res://assets/mustache2_enemy/mm6.png" type="Texture" id=30]
+[ext_resource path="res://assets/mustache2_enemy/mm7.png" type="Texture" id=31]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "type_4",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "type_3",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "type_1",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ) ],
+"loop": true,
+"name": "type_2",
+"speed": 7.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 18.2832
+
+[node name="Enemy" type="KinematicBody2D"]
+
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+
+[node name="EnemySprite2D" type="AnimatedSprite" parent="."]
+
+transform/pos = Vector2( 2, -2 )
+frames = SubResource( 1 )
+animation = "default"
+playing = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 2, 0, 0, 2, -0.880264, 6.16174 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( -0.880264, 6.16174 )
+transform/scale = Vector2( 2, 2 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
+
+

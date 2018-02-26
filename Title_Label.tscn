@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://Contains.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://background.gd" type="Script" id=4]
+[ext_resource path="res://TitleScreen.png" type="Texture" id=5]
+
+[node name="Label" type="Label"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 12.0
+margin/top = 17.0
+margin/right = 112.0
+margin/bottom = 31.0
+text = "OMG Run_Away"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Contains" parent="." instance=ExtResource( 1 )]
+
+[node name="Node2D" type="Node2D" parent="Contains"]
+
+transform/pos = Vector2( 12, 17 )
+
+[node name="Player" parent="Contains/Node2D" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 48.6625, 383.133 )
+transform/scale = Vector2( 0.982921, 1.18729 )
+
+[node name="Enemy" parent="Contains/Node2D" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 604.492, 387.326 )
+
+[node name="Enemy1" parent="Contains/Node2D" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 607.27, 513.006 )
+
+[node name="Enemy2" parent="Contains/Node2D" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 916.39, 386.224 )
+
+[node name="Enemy3" parent="Contains/Node2D" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 769.243, 385.556 )
+
+[node name="Enemy4" parent="Contains/Node2D" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 785.799, 535.322 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Contains"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Contains/ParallaxBackground"]
+
+transform/pos = Vector2( 1.00003, 7.84955 )
+motion/scale = Vector2( 1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+script/script = ExtResource( 4 )
+
+[node name="TextureFrame" type="TextureFrame" parent="Contains/ParallaxBackground/ParallaxLayer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+
+
